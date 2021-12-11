@@ -1,14 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function Check() {
+export default function Answers() {
 	return (
-		<div className="wrapper wrapper-check grid bg-white">
+		<div className="wrapper wrapper-answers grid bg-white">
 			<main className="check grid">
 				<div className="box grid">
 					<p className="fs-400">How would one say goodbye in Spanish?</p>
 					<div className="answers flex fs-200">
-						<button className="btn btn--option btn--checked">Adidos</button>
+						<button className="btn btn--option btn--correct">Adidos</button>
 						<button className="btn btn--option">Hola</button>
 						<button className="btn btn--option">Au Revoir</button>
 						<button className="btn btn--option">Salir</button>
@@ -22,9 +22,9 @@ export default function Check() {
 						breaking in stores?
 					</p>
 					<div className="answers flex fs-200">
-						<button className="btn btn--option btn--checked">Adidos</button>
+						<button className="btn btn--option btn--wrong">Adidos</button>
 						<button className="btn btn--option">Hola</button>
-						<button className="btn btn--option">Au Revoir</button>
+						<button className="btn btn--option btn--correct">Au Revoir</button>
 						<button className="btn btn--option">Salir</button>
 					</div>
 					<hr />
@@ -32,9 +32,9 @@ export default function Check() {
 				<div className="box grid">
 					<p className="fs-400">How would one say goodbye in Spanish?</p>
 					<div className="answers flex fs-200">
-						<button className="btn btn--option btn--checked">Adidos</button>
+						<button className="btn btn--option btn--wrong">Adidos</button>
 						<button className="btn btn--option">Hola</button>
-						<button className="btn btn--option">Au Revoir</button>
+						<button className="btn btn--option btn--correct">Au Revoir</button>
 						<button className="btn btn--option">Salir</button>
 					</div>
 					<hr />
@@ -42,16 +42,19 @@ export default function Check() {
 				<div className="box grid">
 					<p className="fs-400">How would one say goodbye in Spanish?</p>
 					<div className="answers flex fs-200">
-						<button className="btn btn--option btn--checked">Adidos</button>
+						<button className="btn btn--option btn--correct">Adidos</button>
 						<button className="btn btn--option">Hola</button>
 						<button className="btn btn--option">Au Revoir</button>
 						<button className="btn btn--option">Salir</button>
 					</div>
 					<hr />
 				</div>
-				<Link to="/answers" className="btn btn--check-answer">
-					Check answers
-				</Link>
+				<div className="results flex">
+					<p>You scored 3/5 correct answers</p>
+					<Link to="/" className="btn btn--play">
+						Play again
+					</Link>
+				</div>
 			</main>
 		</div>
 	);

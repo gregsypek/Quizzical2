@@ -94,6 +94,10 @@ select {
 	}
 }
 
+hr {
+	border: 1px solid hsl(var(--clr-dark) / 0.2);
+}
+
 /* ------------------- */
 /* Utility classes     */
 /* ------------------- */
@@ -199,9 +203,6 @@ select {
 	justify-content: center;
 	align-items: center;
 }
-/* .wrapper > * {
-	outline: 1px solid green;
-} */
 
 /* -------------------BTNS--------------------- */
 .btn:link,
@@ -233,14 +234,22 @@ select {
 .btn--checked {
 	background-color: hsl(var(--clr-accent1) / 0.2);
 }
-.btn--check-answer {
-	padding: 1.2rem 4rem;
+.btn--check-answer,
+.btn--play {
+	padding: 1rem 3.8rem;
 	background-color: hsl(var(--clr-accent1));
 	color: hsl(var(--clr-white));
 	justify-self: center;
 	border-radius: 10px;
 	border: none;
 	/* margin-top: 2.9rem; */
+}
+
+.btn--correct {
+	background-color: hsl(var(--clr-accent2));
+}
+.btn--wrong {
+	background-color: hsl(var(--clr-accent3));
 }
 /* -------------------HOME--------------------- */
 
@@ -272,13 +281,16 @@ select {
 
 /* -------------------CHECK--------------------- */
 
-.wrapper-check::before {
+.wrapper-check::before,
+.wrapper-answers::before {
 	content: url(./blob\ 6-1.png);
 }
-.wrapper-check::after {
+.wrapper-check::after,
+.wrapper-answers::after {
 	content: url(./blob\ 6.png);
 }
-.wrapper-check {
+.wrapper-check,
+.wrapper-answers {
 	grid-template-columns: minmax(15%, 1fr) 70% minmax(15%, 1fr);
 }
 .check {
@@ -296,7 +308,11 @@ select {
 	--gap: min(3vw, 2rem);
 }
 
-hr {
-	border: 1px solid hsl(var(--clr-dark) / 0.2);
+/* -------------------ANSWERS--------------------- */
+
+.results {
+	align-items: center;
 }
-/* -------------------RESULT--------------------- */
+.wrapper-answers .answers > button:not(.btn--correct) {
+	opacity: 0.5;
+}
