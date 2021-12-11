@@ -233,7 +233,7 @@ select {
 	position: absolute;
 	content: url(./blob\ 5-1.png);
 	right: 0;
-	top: 0;
+	top: 1;
 }
 .wrapper::after {
 	position: absolute;
