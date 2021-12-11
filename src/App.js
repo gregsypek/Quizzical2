@@ -5,14 +5,12 @@ import { Route, BrowserRouter, Routes } from "react-router-dom";
 
 function App() {
 	return (
-		<div className="wrapper grid bg-white">
-			<BrowserRouter>
-				<Routes>
-					<Route exact path="/" element={<Home />} />
-					<Route exact path="/check" element={<Check />} />
-				</Routes>
-			</BrowserRouter>
-		</div>
+		<BrowserRouter>
+			<Routes>
+				<Route exact path="/" element={<Home />} />
+				<Route exact path="/check" element={<Check />} />
+			</Routes>
+		</BrowserRouter>
 	);
 }
 
