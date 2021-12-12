@@ -197,7 +197,10 @@ hr {
 
 .wrapper {
 	min-height: 55rem;
-	aspect-ratio: 1;
+	min-width: 55rem;
+	max-width: 70rem;
+	/* aspect-ratio: 1; */
+	padding-block: 5rem;
 	position: relative;
 	/* outline: 1px solid black; */
 	justify-content: center;
@@ -305,6 +308,7 @@ hr {
 }
 .answers {
 	justify-content: flex-start;
+	flex-wrap: wrap;
 	--gap: min(3vw, 2rem);
 }
 
