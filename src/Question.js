@@ -1,3 +1,4 @@
+import { nanoid } from "nanoid";
 import React from "react";
 import Button from "./Button";
 export default function Question({
@@ -5,8 +6,19 @@ export default function Question({
 	incorrect_answers,
 	correct_answer,
 }) {
-	const allOptions = [...incorrect_answers, correct_answer];
-	const buttons = allOptions.map((btn) => <Button text={btn} />);
+	let allOptions = [...incorrect_answers, correct_answer];
+
+	function markButton(id) {
+		console.log("click", id);
+	}
+
+	allOptions = allOptions.sort(() => Math.random() - 0.5);
+	const buttons = allOptions.map((btn, i) => {
+		let id = nanoid();
+		return (
+			<Button key={id} text={btn} markButton={() => markButton(id)} id={id} />
+		);
+	});
 	// console.log("all", allOptions);
 	console.log(allOptions);
 	return (
