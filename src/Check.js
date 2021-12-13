@@ -6,6 +6,8 @@ import { nanoid } from "nanoid";
 
 export default function Check() {
 	const [data, setData] = useState([]);
+	// const [userAnswers, setUserAnswers] = useState([]);
+	// const [sortedAnswers, setSortedAnswers] = useState([]);
 
 	useEffect(() => {
 		fetch(
@@ -19,19 +21,25 @@ export default function Check() {
 						question: obj.question,
 						incorrect_answers: obj.incorrect_answers,
 						correct_answer: obj.correct_answer,
+						all_answers: [...obj.incorrect_answers, obj.correct_answer],
+						mix_answers: [...obj.incorrect_answers, obj.correct_answer].sort(
+							() => Math.random() - 0.5
+						),
 					}))
 				)
 			);
 	}, []);
-
 	console.log(data);
 
-	const allQuestions = data.map((item) => (
+	const allQuestions = data.map((item, i) => (
 		<Question
 			key={item.id}
 			question={item.question}
 			incorrect_answers={item.incorrect_answers}
 			correct_answer={item.correct_answer}
+			mix_answers={item.all_answers}
+			id={i}
+			// user_answers={userAnswers}
 		/>
 	));
 	return (
