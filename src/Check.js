@@ -1,25 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Question from "./Question";
 
-import { Link } from "react-router-dom";
 import { nanoid } from "nanoid";
 
 export default function Check() {
 	const [data, setData] = useState([]);
-	// const [userAnswers, setUserAnswers] = useState([]);
-	// const [sortedAnswers, setSortedAnswers] = useState([]);
-
-	// const [answer, setAnswer] = useState([]);
-
-	// function setArrayWithNumbers() {
-	// 	let arr = [];
-	// 	for (let i = 0; i < questionsLength; i++) {
-	// 		arr.push(i);
-	// 	}
-	// 	return arr;
-	// }
-
-	// const [answer, setAnswer] = useState([]);
+	const [isCheck, setIsCheck] = useState(false);
 
 	useEffect(() => {
 		fetch(
@@ -54,14 +40,34 @@ export default function Check() {
 			questionsLength={data.length}
 		/>
 	));
+
+	const correct = data.map((item) => item.correct_answer);
+
+	function checkAnswer() {
+		// const mark = document.querySelector(`.box[data-id="${id}"]`);
+		const mark = document.querySelectorAll(".btn--checked");
+		console.log(mark);
+		let answers = [];
+		mark.forEach((item) => answers.push(item.dataset.name));
+		console.log(answers);
+		answers.map((answer) =>
+			correct.includes(answer)
+				? document
+						.querySelector(`[data-name="${answer}"]`)
+						.classList.add("btn--correct")
+				: document
+						.querySelector(`[data-name="${answer}"]`)
+						.classList.add("btn--wrong")
+		);
+	}
 	return (
 		<div className="wrapper wrapper-check grid bg-white">
 			<main className="check grid">
 				{allQuestions}
 
-				<Link to="/answers" className="btn btn--check-answer">
+				<button onClick={checkAnswer} className="btn btn--check-answer">
 					Check answers
-				</Link>
+				</button>
 			</main>
 		</div>
 	);

@@ -1,37 +1,26 @@
-import React, { useState } from "react";
+import React from "react";
 
 import Button from "./Button";
 
-export default function Question({
-	question,
-	incorrect_answers,
-	correct_answer,
-	mix_answers,
-	id,
-	questionsLength,
-	answer,
-}) {
-	// const [answers, setAnswers] = useState([
-	// 	{
-	// 		[id]: answer,
-	// 	},
-	// ]);
-	const [answers, setAnswers] = useState([]);
-
+export default function Question({ question, mix_answers, id }) {
 	function markButton(name, id) {
 		const box = document.querySelector(`.box[data-id="${id}"]`);
 		const allButtons = box.querySelectorAll(".btn--option");
-		allButtons.forEach((btn) => btn.classList.remove("btn--checked"));
+		allButtons.forEach((btn) => {
+			btn.classList.remove("btn--checked");
+			btn.classList.remove("btn--correct");
+		});
 
 		document
 			.querySelector(`[data-name="${name}"]`)
 			.classList.add("btn--checked");
 
-		console.log(answers);
-		console.log("id", id);
-		setAnswers((prev) => [{ ...prev }, { [id]: name }]);
+		// console.log("id", id);
+		// setAnswers((prev) =>
+		// 	prev.length > 0 ? [({ ...prev }, { [id]: name })] : [{ [id]: name }]
+		// );
+		// console.log(answers);
 	}
-	console.log("bbbb", answers);
 
 	const buttons = mix_answers.map((btn, i) => {
 		return (

@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Button({ text, name, correct_answer, id, markButton }) {
+export default function Button({ text, name, answer, id, markButton }) {
 	return (
 		<button
 			data-name={name}
