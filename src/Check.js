@@ -9,6 +9,18 @@ export default function Check() {
 	// const [userAnswers, setUserAnswers] = useState([]);
 	// const [sortedAnswers, setSortedAnswers] = useState([]);
 
+	// const [answer, setAnswer] = useState([]);
+
+	// function setArrayWithNumbers() {
+	// 	let arr = [];
+	// 	for (let i = 0; i < questionsLength; i++) {
+	// 		arr.push(i);
+	// 	}
+	// 	return arr;
+	// }
+
+	// const [answer, setAnswer] = useState([]);
+
 	useEffect(() => {
 		fetch(
 			"https://opentdb.com/api.php?amount=10&category=18&difficulty=easy&type=multiple"
@@ -39,7 +51,7 @@ export default function Check() {
 			correct_answer={item.correct_answer}
 			mix_answers={item.all_answers}
 			id={i}
-			// user_answers={userAnswers}
+			questionsLength={data.length}
 		/>
 	));
 	return (

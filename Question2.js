@@ -1,5 +1,5 @@
+// import { nanoid } from "nanoid";
 import React, { useState } from "react";
-
 import Button from "./Button";
 
 export default function Question({
@@ -8,19 +8,14 @@ export default function Question({
 	correct_answer,
 	mix_answers,
 	id,
-	questionsLength,
-	answer,
 }) {
-	// const [answers, setAnswers] = useState([
-	// 	{
-	// 		[id]: answer,
-	// 	},
-	// ]);
 	const [answers, setAnswers] = useState([]);
 
-	function markButton(name, id) {
+	function markButton(name) {
+		console.log("click", name);
 		const box = document.querySelector(`.box[data-id="${id}"]`);
 		const allButtons = box.querySelectorAll(".btn--option");
+		console.log("all", allButtons);
 		allButtons.forEach((btn) => btn.classList.remove("btn--checked"));
 
 		document
@@ -28,17 +23,20 @@ export default function Question({
 			.classList.add("btn--checked");
 
 		console.log(answers);
-		console.log("id", id);
-		setAnswers((prev) => [{ ...prev }, { [id]: name }]);
+		// console.log(answers);
+		setAnswers(() => [name]);
 	}
-	console.log("bbbb", answers);
+	console.log(answers);
+
+	// allOptions = allOptions.sort(() => Math.random() - 0.5);
 
 	const buttons = mix_answers.map((btn, i) => {
+		// let id = nanoid();
 		return (
 			<Button
 				key={i}
 				text={btn}
-				markButton={() => markButton(btn, id)}
+				markButton={() => markButton(btn)}
 				id={id}
 				name={btn}
 			/>
