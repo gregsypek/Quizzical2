@@ -1,16 +1,16 @@
 import React from "react";
 import Home from "./Home";
 import Check from "./Check";
-import Answers from "./Answers";
+import ErrorPage from "./ErrorPage";
 import { Route, BrowserRouter, Routes } from "react-router-dom";
 
 function App() {
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route exact path="/" element={<Home />} />
-				<Route exact path="/check" element={<Check />} />
-				<Route exact path="/answers" element={<Answers />} />
+				<Route index element={<Home />} />
+				<Route path="/check" element={<Check />} />
+				<Route path="*" element={<ErrorPage />} />
 			</Routes>
 		</BrowserRouter>
 	);

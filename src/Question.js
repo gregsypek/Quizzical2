@@ -4,7 +4,6 @@ import Button from "./Button";
 
 export default function Question({ question, isCheck, mix_answers, id }) {
 	function markButton(name, id) {
-		console.log(isCheck);
 		if (!isCheck) {
 			const box = document.querySelector(`.box[data-id="${id}"]`);
 			const allButtons = box.querySelectorAll(".btn--option");

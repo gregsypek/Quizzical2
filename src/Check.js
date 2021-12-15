@@ -29,7 +29,6 @@ export default function Check() {
 				)
 			);
 	}, []);
-	console.log(data);
 
 	const allQuestions = data.map((item, i) => (
 		<Question
@@ -57,10 +56,8 @@ export default function Check() {
 		// const mark = document.querySelector(`.box[data-id="${id}"]`);
 		if (!isCheck) {
 			const mark = document.querySelectorAll(".btn--checked");
-			console.log(mark);
 			let answers = [];
 			mark.forEach((item) => answers.push(item.dataset.name));
-			console.log(answers);
 			answers.map((answer) => {
 				if (allCorrectAnswers.includes(answer)) {
 					setScore((prev) => prev + 1);
