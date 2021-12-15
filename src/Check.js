@@ -11,7 +11,7 @@ export default function Check() {
 
 	useEffect(() => {
 		fetch(
-			"https://opentdb.com/api.php?amount=10&category=18&difficulty=easy&type=multiple"
+			"https://opentdb.com/api.php?amount=5&category=18&difficulty=easy&type=multiple"
 		)
 			.then((res) => res.json())
 			.then((data) =>
