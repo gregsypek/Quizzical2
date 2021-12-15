@@ -2,19 +2,21 @@ import React from "react";
 
 import Button from "./Button";
 
-export default function Question({ question, mix_answers, id }) {
+export default function Question({ question, isCheck, mix_answers, id }) {
 	function markButton(name, id) {
-		const box = document.querySelector(`.box[data-id="${id}"]`);
-		const allButtons = box.querySelectorAll(".btn--option");
-		allButtons.forEach((btn) => {
-			btn.classList.remove("btn--checked");
-			btn.classList.remove("btn--correct");
-		});
+		console.log(isCheck);
+		if (!isCheck) {
+			const box = document.querySelector(`.box[data-id="${id}"]`);
+			const allButtons = box.querySelectorAll(".btn--option");
+			allButtons.forEach((btn) => {
+				btn.classList.remove("btn--checked");
+				btn.classList.remove("btn--correct");
+			});
 
-		document
-			.querySelector(`[data-name="${name}"]`)
-			.classList.add("btn--checked");
-
+			document
+				.querySelector(`[data-name="${name}"]`)
+				.classList.add("btn--checked");
+		} else return;
 		// console.log("id", id);
 		// setAnswers((prev) =>
 		// 	prev.length > 0 ? [({ ...prev }, { [id]: name })] : [{ [id]: name }]

@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Question from "./Question";
+import { Link } from "react-router-dom";
 
 import { nanoid } from "nanoid";
 
 export default function Check() {
 	const [data, setData] = useState([]);
 	const [isCheck, setIsCheck] = useState(false);
+	const [score, setScore] = useState(0);
 
 	useEffect(() => {
 		fetch(
@@ -38,36 +40,72 @@ export default function Check() {
 			mix_answers={item.all_answers}
 			id={i}
 			questionsLength={data.length}
+			isCheck={isCheck}
 		/>
 	));
 
-	const correct = data.map((item) => item.correct_answer);
+	const allCorrectAnswers = data.map((item) => item.correct_answer);
 
-	function checkAnswer() {
-		// const mark = document.querySelector(`.box[data-id="${id}"]`);
-		const mark = document.querySelectorAll(".btn--checked");
-		console.log(mark);
-		let answers = [];
-		mark.forEach((item) => answers.push(item.dataset.name));
-		console.log(answers);
-		answers.map((answer) =>
-			correct.includes(answer)
-				? document
-						.querySelector(`[data-name="${answer}"]`)
-						.classList.add("btn--correct")
-				: document
-						.querySelector(`[data-name="${answer}"]`)
-						.classList.add("btn--wrong")
+	function showCorrectAnswers() {
+		allCorrectAnswers.map((answer) =>
+			document
+				.querySelector(`[data-name="${answer}"]`)
+				.classList.add("btn--correct")
 		);
 	}
+	function checkAnswer() {
+		// const mark = document.querySelector(`.box[data-id="${id}"]`);
+		if (!isCheck) {
+			const mark = document.querySelectorAll(".btn--checked");
+			console.log(mark);
+			let answers = [];
+			mark.forEach((item) => answers.push(item.dataset.name));
+			console.log(answers);
+			answers.map((answer) => {
+				if (allCorrectAnswers.includes(answer)) {
+					setScore((prev) => prev + 1);
+					document
+						.querySelector(`[data-name="${answer}"]`)
+						.classList.add("btn--correct");
+				} else {
+					document
+						.querySelector(`[data-name="${answer}"]`)
+						.classList.add("btn--wrong");
+				}
+				//what return
+				return setScore;
+			});
+			showCorrectAnswers();
+			setIsCheck((state) => !state);
+		} else return;
+	}
+	function resetGame() {
+		setIsCheck(false);
+	}
+
 	return (
 		<div className="wrapper wrapper-check grid bg-white">
 			<main className="check grid">
 				{allQuestions}
 
-				<button onClick={checkAnswer} className="btn btn--check-answer">
-					Check answers
-				</button>
+				<div className="results flex">
+					{isCheck ? (
+						<p>
+							You scored {score}/{data.length} correct answers
+						</p>
+					) : (
+						""
+					)}
+					{!isCheck ? (
+						<button onClick={checkAnswer} className="btn btn--check-answer">
+							Check answers
+						</button>
+					) : (
+						<Link to="/" onClick={resetGame} className="btn btn--check-answer">
+							Play again
+						</Link>
+					)}
+				</div>
 			</main>
 		</div>
 	);

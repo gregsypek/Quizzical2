@@ -316,6 +316,7 @@ hr {
 
 .results {
 	align-items: center;
+	justify-content: center;
 }
 .wrapper-answers .answers > button:not(.btn--correct) {
 	opacity: 0.5;
